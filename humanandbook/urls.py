@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('articles/', include('articleapp.urls')),
     path('comments/', include('commentapp.urls')),
+    path('likes/', include('likeapp.urls')),
 
 ]
