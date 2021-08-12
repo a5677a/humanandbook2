@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<div class="content_font" style="width: 400px; margin: 0 auto; ">
+    <form action="{% url 'profileapp:create' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-secondary activate col-3">
+    </form>
+</div>
+
+{% endblock %}

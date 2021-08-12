@@ -5,34 +5,57 @@
 
 <div>
     <div class="sort_center content_font" style="max-width:500px; margin: 4rem auto;">
-        <!--<p>
-            {{ target_user.date_joined }}
-        </p>-->
 
-        {% if target_user.profile %}
-        <img src="{{ target_user.profile.image.url }}" alt=""
-             style="height:16rem; width:16rem; margin-bottom: 2rem; object-fit: cover;">
-        <h4>
-            {{ target_user.profile.nickname }}
-            {% if target_user == user %}
-            <a href ="{% url 'profileapp:update' pk=target_user.profile.pk %}"
-                class="material-icons">
-                <span style="font-size: .7rem;">edit</span>
-            </a>
-            {% endif %}
-        </h4>
-        <h6>
-            {{ target_user.profile.message }}
-        </h6>
-        {% else %}
-            {% if target_user == user %}
-            <a href = "{% url 'profileapp:create' %}">
-                <h2>프로필생성</h2>
-            </a>
+        {% with user_followers=user.followers.all %}
+            {% if target_user.profile %}
+            <img src="{{ target_user.profile.image.url }}" alt=""
+                style="height:16rem; width:16rem; margin-bottom: 2rem; object-fit: cover;">
+            <h4>
+                {{ target_user.profile.nickname }}
+                {% if target_user == user %}
+                <a href ="{% url 'profileapp:update' pk=target_user.profile.pk %}"
+                    class="material-icons">
+                    <span style="font-size: .7rem;">edit</span>
+                </a>
+                <h6>
+                    {{ target_user.profile.message }}
+                </h6>
+                {% else %}
+                <hr>
+                    {% if request.user in user_followers %}
+                        <a href="{% url 'accounts:follow' user.pk %}">Unfollow</a>
+                    {% else %}
+                        <a href="{% url 'accounts:follow' user.pk %}">Follow</a>
+                    {% endif %}
+                {% endif %}
+
+                <p> 팔로워 | {{ user_followers|length }}</p>
+                <p> 팔로잉 | {{ user.followings.count }}</p>
+            </h4>
+
+            <!--<h3>작성한 글 목록</h3>
+            {% for article in user.article_set.all %}
+                <a href="{% url 'articleapp:detail' article.pk %}">
+                    <p>{{ article.title }}</p>
+                </a>
+            {% endfor %}
+
+            <h3>좋아요한 글 목록</h3>
+            {% for article in user.like_articles.all %}
+                <a href="{% url 'articles:detail' article.pk %}">
+                <p>{{ article.title }}</p>
+                </a>
+            {% endfor %}-->
             {% else %}
-            <h4>프로필 없음</h4>
+                {% if target_user == user %}
+                <a href = "{% url 'profileapp:create' %}">
+                    <h2>프로필생성</h2>
+                </a>
+                {% else %}
+                <h4>프로필 없음</h4>
+                {% endif %}
             {% endif %}
-        {% endif %}
+        {% endwith %}
 
         <br>
         {% if target_user == user %}
@@ -44,6 +67,7 @@
         </a>
         {% endif %}
     </div>
+
     <div>
         {% include 'snippets/list_fragment.html' with article_list=object_list %}
     </div>

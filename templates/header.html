@@ -2,27 +2,27 @@
 <div style="text-align:center;margin: 3rem 0;">
     <div>
         <br><br>
-        <h1>📚 <b>Human and Book</b> 👥</h1>
+        <h1>📚 <b>책과 사람</b> 👥</h1>
     </div>
 
     <div style="margin-top: 1.5rem;">
-        <a>
-            <span>Book Review</span>
+        <a href="{% url 'articleapp:list' %}">
+            <span>서평게시판</span>
         </a>
 
         {% if not user.is_authenticated %}
         <a href="{% url 'accountapp:signup' %}">
-            <span>SignUp</span>
+            <span>회원가입</span>
         </a>
         <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
-            <span>Login</span>
+            <span>로그인</span>
         </a>
         {% else %}
         <a href="{% url 'accountapp:detail' pk=user.pk %}">
-            <span>MyPage</span>
+            <span>마이페이지</span>
         </a>
         <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
-            <span>Logout</span>
+            <span>로그아웃</span>
         </a>
         {% endif %}
     </div>

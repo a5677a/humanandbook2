@@ -6,9 +6,11 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import acc_ownership_required
 from accountapp.forms import AccUpdateForm, UserForm
+from articleapp.models import Article
 
 has_ownership = [acc_ownership_required, login_required]
 
@@ -31,7 +33,13 @@ def signup(request):
 
 class AccDetailView(DetailView):
     model = User
+    context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+    pagination_by = 8
+
+    def get_context_data(self, **kwargs):
+        object_list = Article.objects.filter(writer=self.get_object())
+        return super(AccDetailView, self).get_context_data(object_list=object_list, **kwargs)
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
