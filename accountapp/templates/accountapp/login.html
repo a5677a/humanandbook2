@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+    <div style="max-width: 250px; margin: 4rem auto">
+        <div class="login_font2">
+            <h3>Login</h3>
+        </div>
+        <br>
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <!--{{ form }}-->
+                {% bootstrap_form form %}
+                <br>
+                {% buttons %}
+                    <button type="submit" class="btn btn-secondary activate col-5">Submit</button>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

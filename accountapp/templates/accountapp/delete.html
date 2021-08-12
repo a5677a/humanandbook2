@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+    <br>
+    <div>
+        <p class="content_font sort_center">
+            회원 탈퇴 시, 탈퇴한 아이디로 다시 가입할 수 없으며<br>
+            데이터 복구도 불가하오니 신중히 진행해주시길 바랍니다.
+        </p>
+    </div>
+    <br>
+    <div class="content_font sort_center" style="width: 400px; margin: 0 auto; ">
+        <form action="{% url 'accountapp:delete' pk=target_user.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary activate col-3">회원탈퇴</button>
+        </form>
+    </div>
+    <br>
+
+{% endblock %}

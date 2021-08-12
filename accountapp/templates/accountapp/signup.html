@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+    <div style="width: 800px; margin: 0 auto; ">
+      <h3>🐱‍🐉 Sign Up</h3>
+      <br>
+      <form method="post" action="">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          <input type="submit" value="회원가입" />
+      </form>
+    </div>
+
+{% endblock %}

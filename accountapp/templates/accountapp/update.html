@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+    <div class="content_font" style="width: 400px; margin: 0 auto;">
+      <div>
+        <h4>Change Info</h4>
+      </div>
+      <form action="{% url 'accountapp:update' pk=target_user.pk %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-secondary activate col-3">
+      </form>
+    </div>
+
+{% endblock %}

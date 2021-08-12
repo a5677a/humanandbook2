@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <div class="sort_center content_font" style="max-width:500px; margin: 4rem auto;">
+        <!--<p>
+            {{ target_user.date_joined }}
+        </p>-->
+
+        {% if target_user.profile %}
+        <img src="{{ target_user.profile.image.url }}" alt=""
+             style="height:16rem; width:16rem; margin-bottom: 2rem; object-fit: cover;">
+        <h4>
+            {{ target_user.profile.nickname }}
+            {% if target_user == user %}
+            <a href ="{% url 'profileapp:update' pk=target_user.profile.pk %}"
+                class="material-icons">
+                <span style="font-size: .7rem;">edit</span>
+            </a>
+            {% endif %}
+        </h4>
+        <h6>
+            {{ target_user.profile.message }}
+        </h6>
+        {% else %}
+            {% if target_user == user %}
+            <a href = "{% url 'profileapp:create' %}">
+                <h2>프로필생성</h2>
+            </a>
+            {% else %}
+            <h4>프로필 없음</h4>
+            {% endif %}
+        {% endif %}
+
+        <br>
+        {% if target_user == user %}
+        <a href="{% url 'accountapp:update' pk=user.pk %}">
+            <p style="font-size: .7rem;">회원정보변경</p>
+        </a>
+        <a href="{% url 'accountapp:delete' pk=user.pk %}">
+            <p style="font-size: .7rem;">회원탈퇴</p>
+        </a>
+        {% endif %}
+    </div>
+    <div>
+        {% include 'snippets/list_fragment.html' with article_list=object_list %}
+    </div>
+</div>
+
+{% endblock %}
