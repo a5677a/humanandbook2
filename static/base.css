@@ -18,6 +18,22 @@
     font-size: .3rem;
 }
 
+.pragmatic_logo {
+    font-family: 'Festive', cursive;
+}
+
+.pragmatic_footer_button {
+    font-size: .9rem;
+}
+
+.pragmatic_footer {
+    text-align:center; margin-top: 2rem;
+}
+
+.pragmatic_header{
+    text-align:center; margin: 2rem 0;
+}
+
 @media screen and (max-width:500px) {
     html {
         font-size: 13px;
@@ -34,6 +50,11 @@ a:hover { /* 링크에 커서를 올렸을 때 */
     text-decoration: none;
 }
 
-.header_space {
-    margin: 0 1rem;
+.prgmatic_header_nav {
+    margin: 0rem 0.5rem;
+    color: black;
+}
+
+.prgmatic_header_navbar {
+    margin: 1rem 0;
 }
