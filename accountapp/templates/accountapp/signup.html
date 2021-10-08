@@ -4,12 +4,13 @@
 
 {% block content %}
 
-    <div style="width: 800px; margin: 0 auto; ">
-      <h3>🐱‍🐉 Sign Up</h3>
+    <div style="width: 400px; margin: 0 auto; ">
+      <h3>회원가입</h3>
       <br>
       <form method="post" action="">
           {% csrf_token %}
           {% bootstrap_form form %}
+          <br>
           <input type="submit" value="회원가입" />
       </form>
     </div>

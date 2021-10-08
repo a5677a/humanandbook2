@@ -66,7 +66,6 @@ WSGI_APPLICATION = 'humanandbook.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -126,3 +125,24 @@ LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Email 전송
+# 메일을 호스트하는 서버
+EMAIL_HOST = 'smtp.gmail.com'
+
+# gmail과의 통신하는 포트
+EMAIL_PORT = '587'
+
+# 발신할 이메일
+EMAIL_HOST_USER = 'whdsbswn@gmail.com'
+#EMAIL_HOST_USER = get_secret("EMAIL_HOST_USER")
+
+# 발신할 메일의 비밀번호
+EMAIL_HOST_PASSWORD = 'pmndwcdzotnqbcas'
+#EMAIL_HOST_PASSWORD = get_secret("EMAIL_HOST_PASSWORD")
+
+# TLS 보안 방법
+EMAIL_USE_TLS = True
+
+# 사이트와 관련한 자동응답을 받을 이메일 주소
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

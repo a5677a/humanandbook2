@@ -6,7 +6,7 @@
 
     <div style="max-width: 250px; margin: 4rem auto">
         <div>
-            <h3>Login</h3>
+            <h3>로그인</h3>
         </div>
         <br>
         <div>
@@ -15,8 +15,11 @@
                 {% bootstrap_form form %}
                 <br>
                 {% buttons %}
-                    <button type="submit" class="btn btn-secondary activate col-5">Submit</button>
+                    <button type="submit" class="btn btn-secondary activate col-5">로그인</button>
                 {% endbuttons %}
+                <a href="{% url 'accountapp:password_reset' %}">
+                    <span style="font-size:0.5rem">비밀번호 찾기</span>
+                </a>
             </form>
         </div>
     </div>

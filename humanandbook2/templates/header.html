@@ -1,0 +1,18 @@
+<div class="pragmatic_header" >
+       <div>
+           <h1 class="pragmatic_logo">책과 사람</h1>
+       </div>
+       <div class="prgmatic_header_navbar">
+           <a href="{% url 'articleapp:list' %}" class="prgmatic_header_nav">
+                <span>서평게시판</span>
+           </a>
+                <span>팔로우</span>
+           {% if not user.is_authenticated %}
+                <span>로그인</span>
+                <span>회원가입</span>
+           {% else %}
+               <span>마이페이지</span>
+               <span>로그아웃</span>
+           {% endif %}
+       </div>
+   </div>

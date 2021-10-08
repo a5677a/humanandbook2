@@ -17,6 +17,7 @@ env = environ.Env(
 environ.Env.read_env(
     env_file = os.path.join(BASE_DIR, '.env')
 )
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -36,7 +37,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django',
         'USER': 'django',
-        'PASSWORD': read_secret('MYSQL_PASSWORD_ROOT'),
+        'PASSWORD': read_secret('MYSQL_PASSWORD'),
         'HOST': 'mariadb',
         'PORT': '3306',
     }

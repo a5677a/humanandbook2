@@ -2,23 +2,24 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.views.generic.list import MultipleObjectMixin
-
 from accountapp.decorators import acc_ownership_required
 from accountapp.forms import AccUpdateForm, UserForm
 from articleapp.models import Article
 
 has_ownership = [acc_ownership_required, login_required]
 
-class AccCreateView(CreateView):
+class SignupView(CreateView):
     model = User
-    form_class = UserCreationForm
+    #form_class = UserCreationForm
+    form_class = UserForm
     success_url = reverse_lazy('accountapp:login')
-    template_name = 'accountapp/create.html'
+    template_name = 'accountapp/signup.html'
 
 def signup(request):
     if request.method == "POST":
@@ -30,6 +31,13 @@ def signup(request):
     else:
         form = UserForm()
         return render(request, 'accountapp/signup.html', {'form': form})
+
+def send_email(request):
+    subject = "message"
+    to = ["whdsbswn@gmail.com"]
+    from_email = "id@gmail.com"
+    message = "메지시 테스트"
+    EmailMessage(subject=subject, body=message, to=to, from_email=from_email).send()
 
 class AccDetailView(DetailView):
     model = User
