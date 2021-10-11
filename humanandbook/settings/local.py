@@ -1,13 +1,6 @@
 
 from .base import *
 
-def read_secret(secret_name):
-    file = open('/run/secrets/' + secret_name)
-    secret = file.read()
-    secret = secret.rstrip().lstrip()
-    file.close()
-    return secret
-
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -22,22 +15,19 @@ environ.Env.read_env(
 
 # SECURITY WARNING: keep the secret key used in production secret!
 ### Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
-SECRET_KEY = read_secret('DJANGO_SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-DATABASES
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
-        'USER': 'django',
-        'PASSWORD': read_secret('MYSQL_PASSWORD'),
-        'HOST': 'mariadb',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
