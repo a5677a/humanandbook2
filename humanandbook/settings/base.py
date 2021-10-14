@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accountapp',
-    "bootstrap5",
     'profileapp',
     'articleapp',
     'commentapp',
